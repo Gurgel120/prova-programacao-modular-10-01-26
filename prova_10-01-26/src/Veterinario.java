@@ -3,8 +3,15 @@ public class Veterinario{
     private String cpf;
     private String especialidade;
     private String telefone;
+    private Sala sala;
     public String getNome() {
         return nome;
+    }
+    public Sala getSala() {
+        return sala;
+    }
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
     public void setNome(String nome) {
         this.nome = nome;
@@ -34,5 +41,15 @@ public class Veterinario{
         this.cpf = cpf;
         this.especialidade=especialidade;
         this.telefone = telefone;
+        this.sala=null;
     }
+    public void associarVeterinarioSala(Sala sala){
+        setSala(sala);
+        sala.adicionarVeterinarioResponsavel(this);
+    }
+    public void removerVeterinarioSala(){
+        sala.setVeterinarioResponsavel(null);
+        setSala(null);
+    }
+
 }

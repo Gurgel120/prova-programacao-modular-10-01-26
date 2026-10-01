@@ -6,6 +6,15 @@ public class Atendimento {
     private String data;
     private String horario;
     private String statusAtendimento;
+    private String observacoes;
+    private Sala sala;
+    private Atendimentos atendimentos;
+    public String getObservacoes() {
+        return observacoes;
+    }
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
     public String getCodigo() {
         return codigo;
     }
@@ -45,6 +54,12 @@ public class Atendimento {
     public String getStatusAtendimento() {
         return statusAtendimento;
     }
+    public Sala getSala() {
+        return sala;
+    }
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
     public void setStatusAtendimento(String statusAtendimento) {
         this.statusAtendimento = statusAtendimento;
     }
@@ -56,13 +71,52 @@ public class Atendimento {
     }
     private Procedimento procedimento;
 
-    public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario,
-        String statusAtendimento){
+        public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario,Atendimentos atendimentos){
         this.codigo = codigo;
         this.nomeAnimal = nomeAnimal;
         this.especie = especie;
         this.nomeTutor = nomeTutor;
         this.data = data;
         this.horario = horario;
-        this.statusAtendimento = statusAtendimento;
-    }}
+        this.statusAtendimento = "agendado";
+        this.observacoes = "";
+        this.sala = null;
+        this.atendimentos = atendimentos;
+        atendimentos.adicionarAtendimento(this);
+    }
+            public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario,
+            String observacoes, Atendimentos atendimentos
+        ){
+        this.codigo = codigo;
+        this.nomeAnimal = nomeAnimal;
+        this.especie = especie;
+        this.nomeTutor = nomeTutor;
+        this.data = data;
+        this.horario = horario;
+        this.statusAtendimento = "agendado";
+        this.observacoes = observacoes;
+        this.sala=null;
+        this.atendimentos = atendimentos;
+        atendimentos.adicionarAtendimento(this);
+    }
+
+
+    public void adicionarSala(Sala sala){
+        this.sala=sala;
+    }
+    public void comecarAtendimento(){
+        if(this.sala != null){
+
+            this.statusAtendimento = "em andamento";
+        }else{
+            System.out.println("\nAdicione uma sala para começar o antedimento");
+        }
+    }
+    public void finalizarAtendimento(){
+        this.statusAtendimento = "finalizado";
+        this.getSala().adicionarAtendimentoFinalizado();
+    }
+    public void adicionarObservacao(String observacoes){
+        this.observacoes = observacoes;
+    }
+}
