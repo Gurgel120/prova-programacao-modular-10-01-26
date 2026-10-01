@@ -8,7 +8,6 @@ public class Atendimento {
     private String statusAtendimento;
     private String observacoes;
     private Sala sala;
-    private Atendimentos atendimentos;
     public String getObservacoes() {
         return observacoes;
     }
@@ -71,7 +70,8 @@ public class Atendimento {
     }
     private Procedimento procedimento;
 
-        public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario,Atendimentos atendimentos){
+        public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario
+        ){
         this.codigo = codigo;
         this.nomeAnimal = nomeAnimal;
         this.especie = especie;
@@ -81,11 +81,9 @@ public class Atendimento {
         this.statusAtendimento = "agendado";
         this.observacoes = "";
         this.sala = null;
-        this.atendimentos = atendimentos;
-        atendimentos.adicionarAtendimento(this);
     }
             public Atendimento(String codigo, String nomeAnimal,String especie, String nomeTutor,String data,String horario,
-            String observacoes, Atendimentos atendimentos
+            String observacoes 
         ){
         this.codigo = codigo;
         this.nomeAnimal = nomeAnimal;
@@ -96,8 +94,6 @@ public class Atendimento {
         this.statusAtendimento = "agendado";
         this.observacoes = observacoes;
         this.sala=null;
-        this.atendimentos = atendimentos;
-        atendimentos.adicionarAtendimento(this);
     }
 
 
